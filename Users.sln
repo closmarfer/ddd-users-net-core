@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users", "Users\Users.csproj", "{C5227C87-AA78-43BB-AE44-C1559AFD3DEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users.Domain", "Users.Domain\Users.Domain.csproj", "{0C35D445-879A-4FC5-AE97-BFE4521445A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|anycpu = Debug|anycpu
+		Release|anycpu = Release|anycpu
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5227C87-AA78-43BB-AE44-C1559AFD3DEF}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{C5227C87-AA78-43BB-AE44-C1559AFD3DEF}.Debug|anycpu.Build.0 = Debug|anycpu
+		{C5227C87-AA78-43BB-AE44-C1559AFD3DEF}.Release|anycpu.ActiveCfg = Release|anycpu
+		{C5227C87-AA78-43BB-AE44-C1559AFD3DEF}.Release|anycpu.Build.0 = Release|anycpu
+		{0C35D445-879A-4FC5-AE97-BFE4521445A9}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{0C35D445-879A-4FC5-AE97-BFE4521445A9}.Debug|anycpu.Build.0 = Debug|anycpu
+		{0C35D445-879A-4FC5-AE97-BFE4521445A9}.Release|anycpu.ActiveCfg = Release|anycpu
+		{0C35D445-879A-4FC5-AE97-BFE4521445A9}.Release|anycpu.Build.0 = Release|anycpu
+	EndGlobalSection
+EndGlobal
