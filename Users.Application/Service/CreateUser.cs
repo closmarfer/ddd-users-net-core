@@ -38,7 +38,7 @@ namespace Users.Domain.Service
 
             _userRepository.Create(newUser);
             
-            //TODO event
+            //Fixme event
         }
 
         private UserUuid generateUserUuid()

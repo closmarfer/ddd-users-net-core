@@ -41,8 +41,8 @@ namespace Users.Domain.Service
 
             _userRepository.Update(existentUser);
             
-            //TODO event
-            //TODO si el email ha cambiado, event de que es diferente
+            //Fixme event
+            //Fixme si el email ha cambiado, event de que es diferente
         }
     }
 }
