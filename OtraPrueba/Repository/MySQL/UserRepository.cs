@@ -17,6 +17,11 @@ namespace Users.Infrastructure.Repository.MySQL
             _mySqlProvider = mySqlProvider;
         }
 
+        public void create(User newUser)
+        {
+            throw new NotImplementedException();
+        }
+
         public User getByEmail(Email email)
         {
             var conn = _mySqlProvider.GetMySqlConnection();
@@ -35,11 +40,16 @@ namespace Users.Infrastructure.Repository.MySQL
 
         private User mapUser(dynamic user)
         {
-            return new User(
-                userUuid: new UserUuid(user.uuid),
-                name: new Name(user.name),
-                email: new Email(user.email)
-               );
+            return User.create(
+                new UserUuid(user.uuid),
+                new Email(user.email),
+                new HashedPassword(user.password),
+                new Name(user.name),
+                new Surname(user.surname),
+                new PhoneNumber(user.phone_number),
+                new PostalCode(user.postal_code),
+                new CountryCode(user.country_code)
+            );
         }
     }
 }
