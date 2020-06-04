@@ -1,6 +1,7 @@
 using Moq;
 using NUnit.Framework;
 using Tests.Domain.Stub;
+using Tests.Mother;
 using Users.Domain.Contract;
 using Users.Domain.Entity;
 using Users.Domain.Exception;
@@ -71,19 +72,11 @@ namespace Tests.Domain.Service
         {
             var repositoryMock = new Mock<IUserRepository>();
 
-            repositoryMock.Setup(m => m.GetByEmail(It.IsAny<Email>())).Returns(
-                User.create(
-                    new UserUuid("abc123"),
-                    new Email("test@test.com"),
-                    new HashedPassword("MyPasswordHashed--"),
-                    new Name("Test"),
-                    new Surname("abc123"),
-                    new PhoneNumber(123456789),
-                    new PostalCode(12345),
-                    new CountryCode("es")
-                )
-            );
+            var user = UserMother.BasicUser();
+            user.HashedPassword = new HashedPassword("MyPasswordHashed--");
             
+            repositoryMock.Setup(m => m.GetByEmail(It.IsAny<Email>())).Returns(user);
+
             return repositoryMock;
         }
     }

@@ -1,6 +1,7 @@
 using Moq;
 using NUnit.Framework;
 using Tests.Domain.Stub;
+using Tests.Mother;
 using Users.Domain.Contract;
 using Users.Domain.Entity;
 using Users.Domain.Exception;
@@ -86,18 +87,10 @@ namespace Tests.Domain.Service
         {
             var repositoryMock = new Mock<IUserRepository>();
 
-            repositoryMock.Setup(m => m.GetByEmail(It.IsAny<Email>())).Returns(
-                User.create(
-                    new UserUuid("abc123"),
-                    new Email("test@test.com"),
-                    new HashedPassword("MyOldPasswordHashed--"),
-                    new Name("Test"),
-                    new Surname("abc123"),
-                    new PhoneNumber(123456789),
-                    new PostalCode(12345),
-                    new CountryCode("es")
-                )
-            );
+            var user = UserMother.BasicUser();
+            user.HashedPassword = new HashedPassword("MyOldPasswordHashed--");
+            
+            repositoryMock.Setup(m => m.GetByEmail(It.IsAny<Email>())).Returns(user);
 
             repositoryMock.Setup(m => m.Update(It.IsAny<User>())).Callback(
                 ((User user) => { Assert.True(user.IsSamePassword(new HashedPassword("MyNewPasswordHashed--"))); }));

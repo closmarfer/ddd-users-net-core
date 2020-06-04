@@ -1,5 +1,6 @@
 using Moq;
 using NUnit.Framework;
+using Tests.Mother;
 using Users.Domain.Contract;
 using Users.Domain.Entity;
 using Users.Domain.Exception;
@@ -60,16 +61,7 @@ namespace Tests.Domain.Service
             var repositoryMock = new Mock<IUserRepository>();
 
             repositoryMock.Setup(m => m.GetUser(It.IsAny<UserUuid>())).Returns(
-                User.create(
-                    new UserUuid("abc123"),
-                    new Email("test@test.com"),
-                    new HashedPassword("abc123"),
-                    new Name("Test"),
-                    new Surname("abc123"),
-                    new PhoneNumber(123456789),
-                    new PostalCode(12345),
-                    new CountryCode("es")
-                )
+                UserMother.BasicUser()
             );
 
             repositoryMock.Setup(m => m.Update(It.IsAny<User>())).Callback(
