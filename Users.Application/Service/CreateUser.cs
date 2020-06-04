@@ -27,7 +27,7 @@ namespace Users.Domain.Service
             )
         {
             
-            base.CheckEmail(email);
+            CheckEmail(email);
             
             var newUser = User.create(
                 generateUserUuid(),
