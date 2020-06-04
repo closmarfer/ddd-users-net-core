@@ -7,11 +7,13 @@ namespace Users.Domain.Service
 {
     public class CreateUser
     {
-        private IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly HashPassword _hashPassword;
 
-        public CreateUser(IUserRepository userRepository)
+        public CreateUser(IUserRepository userRepository, HashPassword hashPassword)
         {
             _userRepository = userRepository;
+            _hashPassword = hashPassword;
         }
 
         public void handle(
@@ -28,7 +30,7 @@ namespace Users.Domain.Service
             var newUser = User.create(
                 generateUserUuid(),
                 email,
-                HashPassword.handle(password),
+                _hashPassword.handle(password),
                 name,
                 surname,
                 phoneNumber,

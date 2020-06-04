@@ -28,7 +28,7 @@ namespace Tests.Domain.Service
                     
                 }));
             
-            var createUser = new CreateUser(repositoryMock.Object);
+            var createUser = new CreateUser(repositoryMock.Object, new HashPassword());
 
             createUser.handle(
                 new Email("test@test.com"),
