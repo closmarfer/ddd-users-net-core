@@ -21,7 +21,7 @@ namespace Tests.Domain.Service
 
             var updatePassword = new UpdatePassword(repositoryMock.Object, hashPasswordMock);
 
-            updatePassword.handle(
+            updatePassword.Handle(
                 new Email("test_modified@test.com"),
                 new Password("MyOldPassword"),
                 new Password("MyNewPassword")
@@ -42,7 +42,7 @@ namespace Tests.Domain.Service
             Assert.Throws<UserNotFoundException>(
                 delegate
                 {
-                    updatePassword.handle(
+                    updatePassword.Handle(
                         new Email("test_modified@test.com"),
                         new Password("MyOldPassword"),
                         new Password("MyNewPassword")
@@ -74,7 +74,7 @@ namespace Tests.Domain.Service
             Assert.Throws<InvalidPasswordException>(
                 delegate
                 {
-                    updatePassword.handle(
+                    updatePassword.Handle(
                         new Email("test_modified@test.com"),
                         new Password("MyOldPasswordError"),
                         new Password("MyNewPassword")

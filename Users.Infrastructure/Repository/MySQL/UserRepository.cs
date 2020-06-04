@@ -48,6 +48,11 @@ namespace Users.Infrastructure.Repository.MySQL
             throw new NotImplementedException();
         }
 
+        public void Delete(User user)
+        {
+            throw new NotImplementedException();
+        }
+
         private User mapUser(dynamic user)
         {
             return User.create(

@@ -5,18 +5,18 @@ using Users.Domain.ValueObject;
 
 namespace Users.Domain.Service
 {
-    public class CreateUser
+    public class CreateUser: CheckUserEmail
     {
         private readonly IUserRepository _userRepository;
         private readonly HashPassword _hashPassword;
 
-        public CreateUser(IUserRepository userRepository, HashPassword hashPassword)
+        public CreateUser(IUserRepository userRepository, HashPassword hashPassword) : base(userRepository)
         {
             _userRepository = userRepository;
             _hashPassword = hashPassword;
         }
 
-        public void handle(
+        public void Handle(
             Email email,
             Password password,
             Name name,
@@ -26,11 +26,13 @@ namespace Users.Domain.Service
             CountryCode countryCode
             )
         {
-      
+            
+            base.CheckEmail(email);
+            
             var newUser = User.create(
                 generateUserUuid(),
                 email,
-                _hashPassword.handle(password),
+                _hashPassword.Handle(password),
                 name,
                 surname,
                 phoneNumber,

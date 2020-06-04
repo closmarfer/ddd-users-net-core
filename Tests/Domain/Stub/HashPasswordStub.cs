@@ -5,7 +5,7 @@ namespace Tests.Domain.Stub
 {
     internal class HashPasswordStub : HashPassword
     {
-        public override HashedPassword handle(Password password)
+        public override HashedPassword Handle(Password password)
         {
             return new HashedPassword(password.Value + "Hashed--");
         }

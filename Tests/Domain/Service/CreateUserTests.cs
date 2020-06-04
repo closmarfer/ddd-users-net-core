@@ -30,7 +30,7 @@ namespace Tests.Domain.Service
             
             var createUser = new CreateUser(repositoryMock.Object, new HashPassword());
 
-            createUser.handle(
+            createUser.Handle(
                 new Email("test@test.com"),
                 new Password("abc123"),
                 new Name("Test"), 

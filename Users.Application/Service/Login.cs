@@ -27,7 +27,7 @@ namespace Users.Domain.Service
                 throw new InvalidPasswordException();
             }
 
-            var hashedPassword = _hashPassword.handle(password);
+            var hashedPassword = _hashPassword.Handle(password);
 
             if (!existentUser.IsSamePassword(hashedPassword))
             {

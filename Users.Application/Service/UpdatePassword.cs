@@ -15,7 +15,7 @@ namespace Users.Domain.Service
             _hashPassword = hashPassword;
         }
 
-        public void handle(
+        public void Handle(
             Email email,
             Password oldPassword,
             Password newPassword
@@ -28,14 +28,14 @@ namespace Users.Domain.Service
                 throw new UserNotFoundException();
             }
 
-            var oldHashedPassword = _hashPassword.handle(oldPassword);
+            var oldHashedPassword = _hashPassword.Handle(oldPassword);
 
             if (!existentUser.IsSamePassword(oldHashedPassword))
             {
                 throw new InvalidPasswordException();
             }
             
-            var newHashedPassword = _hashPassword.handle(newPassword);
+            var newHashedPassword = _hashPassword.Handle(newPassword);
             
             existentUser.HashedPassword = newHashedPassword;
 

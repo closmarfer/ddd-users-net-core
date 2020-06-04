@@ -18,7 +18,7 @@ namespace Tests.Domain.Service
 
             var updateUser = new UpdateUser(repositoryMock.Object);
 
-            updateUser.handle(
+            updateUser.Handle(
                 new UserUuid("abc123"),
                 new Email("test_modified@test.com"),
                 new Name("TestModified"),
@@ -43,7 +43,7 @@ namespace Tests.Domain.Service
             Assert.Throws<UserNotFoundException>(
                 delegate
                 {
-                    updateUser.handle(
+                    updateUser.Handle(
                         new UserUuid("abc123"),
                         new Email("test_modified@test.com"),
                         new Name("TestModified"),

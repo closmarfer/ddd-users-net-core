@@ -9,5 +9,6 @@ namespace Users.Domain.Contract
         User GetByEmail(Email email);
         User GetUser(UserUuid uuid);
         void Update(User user);
+        void Delete(User user);
     }
 }

@@ -7,7 +7,7 @@ namespace Users.Domain.Service
 {
     public class HashPassword
     {
-        public virtual HashedPassword handle(Password password)
+        public virtual HashedPassword Handle(Password password)
         {
             byte[] salt = new byte[128 / 8];
 
