@@ -5,7 +5,9 @@ namespace Users.Domain.Contract
 {
     public interface IUserRepository
     {
-        void create(User newUser);
-        User getByEmail(Email email);
+        void Create(User newUser);
+        User GetByEmail(Email email);
+        User GetUser(UserUuid uuid);
+        void Update(User user);
     }
 }

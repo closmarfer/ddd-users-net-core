@@ -21,7 +21,7 @@ namespace Users.API.Controllers
         public User Get()
         {
 
-            var myUser = _userRepository.getByEmail(new Email("carlos@closmarfer.com"));
+            var myUser = _userRepository.GetByEmail(new Email("carlos@closmarfer.com"));
 
             return myUser;
 

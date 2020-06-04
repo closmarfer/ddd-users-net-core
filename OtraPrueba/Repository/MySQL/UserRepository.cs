@@ -17,12 +17,12 @@ namespace Users.Infrastructure.Repository.MySQL
             _mySqlProvider = mySqlProvider;
         }
 
-        public void create(User newUser)
+        public void Create(User newUser)
         {
             throw new NotImplementedException();
         }
 
-        public User getByEmail(Email email)
+        public User GetByEmail(Email email)
         {
             var conn = _mySqlProvider.GetMySqlConnection();
 
@@ -36,6 +36,16 @@ namespace Users.Infrastructure.Repository.MySQL
             }
 
             return mapUser(users.First());
+        }
+
+        public User GetUser(UserUuid uuid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(User user)
+        {
+            throw new NotImplementedException();
         }
 
         private User mapUser(dynamic user)

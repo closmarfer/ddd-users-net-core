@@ -14,7 +14,7 @@ namespace Tests.Domain.Service
         {
             var repositoryMock = new Mock<IUserRepository>();
 
-            repositoryMock.Setup(m => m.create(It.IsAny<User>())).Callback(
+            repositoryMock.Setup(m => m.Create(It.IsAny<User>())).Callback(
                 ((User user) =>
                 {
                     Assert.IsNotEmpty(user.UserUuid.Value);

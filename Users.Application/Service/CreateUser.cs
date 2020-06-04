@@ -26,17 +26,19 @@ namespace Users.Domain.Service
         {
       
             var newUser = User.create(
-                uuid: generateUserUuid(),
-                email: email,
-                hashedPassword: HashPassword.handle(password),
-                name: name,
-                surname: surname,
-                phoneNumber: phoneNumber,
-                postalCode: postalCode,
-                countryCode: countryCode
+                generateUserUuid(),
+                email,
+                HashPassword.handle(password),
+                name,
+                surname,
+                phoneNumber,
+                postalCode,
+                countryCode
                 );
 
-            _userRepository.create(newUser);
+            _userRepository.Create(newUser);
+            
+            //TODO event
         }
 
         private UserUuid generateUserUuid()
