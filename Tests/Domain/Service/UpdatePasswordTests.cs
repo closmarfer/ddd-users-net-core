@@ -1,5 +1,6 @@
 using Moq;
 using NUnit.Framework;
+using Tests.Domain.Stub;
 using Users.Domain.Contract;
 using Users.Domain.Entity;
 using Users.Domain.Exception;
@@ -15,7 +16,7 @@ namespace Tests.Domain.Service
         {
             var repositoryMock = GetRepositoryMock();
 
-            var hashPasswordMock = new HashPasswordMock();
+            var hashPasswordMock = new HashPasswordStub();
 
             var updatePassword = new UpdatePassword(repositoryMock.Object, hashPasswordMock);
 
@@ -35,7 +36,7 @@ namespace Tests.Domain.Service
 
             repositoryMock.Setup(m => m.GetUser(It.IsAny<UserUuid>())).Returns((User) null);
 
-            var updatePassword = new UpdatePassword(repositoryMock.Object, new HashPasswordMock());
+            var updatePassword = new UpdatePassword(repositoryMock.Object, new HashPasswordStub());
 
             Assert.Throws<UserNotFoundException>(
                 delegate
@@ -48,12 +49,12 @@ namespace Tests.Domain.Service
                 }
             );
         }
-        
+
         [Test]
         public void TestOldPasswordShouldNotBeValid()
         {
             var repositoryMock = new Mock<IUserRepository>();
-            
+
             repositoryMock.Setup(m => m.GetByEmail(It.IsAny<Email>())).Returns(
                 User.create(
                     new UserUuid("abc123"),
@@ -67,7 +68,7 @@ namespace Tests.Domain.Service
                 )
             );
 
-            var updatePassword = new UpdatePassword(repositoryMock.Object, new HashPasswordMock());
+            var updatePassword = new UpdatePassword(repositoryMock.Object, new HashPasswordStub());
 
             Assert.Throws<InvalidPasswordException>(
                 delegate
@@ -101,14 +102,6 @@ namespace Tests.Domain.Service
             repositoryMock.Setup(m => m.Update(It.IsAny<User>())).Callback(
                 ((User user) => { Assert.True(user.IsSamePassword(new HashedPassword("MyNewPasswordHashed--"))); }));
             return repositoryMock;
-        }
-    }
-
-    class HashPasswordMock : HashPassword
-    {
-        public override HashedPassword handle(Password password)
-        {
-            return new HashedPassword(password.Value + "Hashed--");
         }
     }
 }
