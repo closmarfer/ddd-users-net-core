@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users.Domain", "Users.Appli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users.Infrastructure", "OtraPrueba\Users.Infrastructure.csproj", "{571EC9B8-C977-48EB-A322-0074D4CFB3C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{BFB73CAF-164A-4B0D-AAF0-FFF2FEA61EAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -25,5 +27,9 @@ Global
 		{571EC9B8-C977-48EB-A322-0074D4CFB3C4}.Debug|anycpu.Build.0 = Debug|Any CPU
 		{571EC9B8-C977-48EB-A322-0074D4CFB3C4}.Release|anycpu.ActiveCfg = Release|Any CPU
 		{571EC9B8-C977-48EB-A322-0074D4CFB3C4}.Release|anycpu.Build.0 = Release|Any CPU
+		{BFB73CAF-164A-4B0D-AAF0-FFF2FEA61EAC}.Debug|anycpu.ActiveCfg = Debug|Any CPU
+		{BFB73CAF-164A-4B0D-AAF0-FFF2FEA61EAC}.Debug|anycpu.Build.0 = Debug|Any CPU
+		{BFB73CAF-164A-4B0D-AAF0-FFF2FEA61EAC}.Release|anycpu.ActiveCfg = Release|Any CPU
+		{BFB73CAF-164A-4B0D-AAF0-FFF2FEA61EAC}.Release|anycpu.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

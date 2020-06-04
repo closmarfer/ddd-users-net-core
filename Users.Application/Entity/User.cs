@@ -23,27 +23,27 @@ namespace Users.Domain.Entity
         }
 
         public static User create(
-            string uuid,
-            string email,
-            string hashed_password,
-            string name,
-            string surname,
-            int phone_number,
-            int postal_code,
-            string country_code
+            UserUuid uuid,
+            Email email,
+            HashedPassword hashedPassword,
+            Name name,
+            Surname surname,
+            PhoneNumber phoneNumber,
+            PostalCode postalCode,
+            CountryCode countryCode
             )
         {
             var user = new User(
-                new UserUuid(uuid),
-                new Email(email),
-                new HashedPassword(hashed_password)
+                uuid,
+                email,
+                hashedPassword
                 )
             {
-                Name = new Name(name),
-                Surname = new Surname(surname),
-                PhoneNumber = new PhoneNumber(phone_number),
-                PostalCode = new PostalCode(postal_code),
-                CountryCode = new CountryCode(country_code)
+                Name = name,
+                Surname = surname,
+                PhoneNumber = phoneNumber,
+                PostalCode = postalCode,
+                CountryCode = countryCode
             };
 
             return user;
