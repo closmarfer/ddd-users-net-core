@@ -1,13 +1,13 @@
 ﻿using System;
 namespace Users.Domain.ValueObject
 {
-    public class Email
+    public class CountryCode
     {
         public string Value { get; private set; }
 
-        public Email(string email)
+        public CountryCode(string country_code)
         {
-            this.Value = email;
+            Value = country_code;
         }
     }
 }

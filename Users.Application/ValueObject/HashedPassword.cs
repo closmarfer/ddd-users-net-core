@@ -1,13 +1,13 @@
 ﻿using System;
 namespace Users.Domain.ValueObject
 {
-    public class Email
+    public class HashedPassword
     {
         public string Value { get; private set; }
 
-        public Email(string email)
+        public HashedPassword(string hashed_password)
         {
-            this.Value = email;
+            Value = hashed_password;
         }
     }
 }

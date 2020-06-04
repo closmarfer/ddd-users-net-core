@@ -3,11 +3,11 @@ namespace Users.Domain.ValueObject
 {
     public class UserUuid
     {
-        public String Uuid { get; private set; }
+        public string Value { get; private set; }
 
-        public UserUuid(String uuid)
+        public UserUuid(string uuid)
         {
-            Uuid = uuid;
+            Value = uuid;
         }
     }
 }

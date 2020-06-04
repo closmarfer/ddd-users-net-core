@@ -3,11 +3,11 @@ namespace Users.Domain.ValueObject
 {
     public class Name
     {
-        public String Value { get; private set; }
+        public string Value { get; private set; }
 
-        public Name(string value)
+        public Name(string name)
         {
-            Value = value;
+            Value = name;
         }
     }
 }

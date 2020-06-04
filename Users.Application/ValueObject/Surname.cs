@@ -1,13 +1,13 @@
 ﻿using System;
 namespace Users.Domain.ValueObject
 {
-    public class Email
+    public class Surname
     {
         public string Value { get; private set; }
 
-        public Email(string email)
+        public Surname(string surname)
         {
-            this.Value = email;
+            Value = surname;
         }
     }
 }
