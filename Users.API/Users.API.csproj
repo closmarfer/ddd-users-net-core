@@ -12,7 +12,7 @@
     <ProjectReference Include="..\Users.Application\Users.Domain.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
-    <ProjectReference Include="..\OtraPrueba\Users.Infrastructure.csproj">
+    <ProjectReference Include="..\Users.Infrastructure\Users.Infrastructure.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
