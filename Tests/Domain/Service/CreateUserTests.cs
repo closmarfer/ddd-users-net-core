@@ -1,3 +1,4 @@
+using System.Buffers.Text;
 using NUnit.Framework;
 using Moq;
 using Users.Domain.Contract;
@@ -24,7 +25,7 @@ namespace Tests.Domain.Service
                     Assert.AreEqual(987234321, user.PhoneNumber.Value);
                     Assert.AreEqual(12345, user.PostalCode.Value);
                     Assert.AreEqual("es", user.CountryCode.Value);
-                    Assert.False(user.IsSamePassword(new HashedPassword("testpass")));
+                    Assert.False(user.IsSamePassword(new HashedPassword("YWJjMTIz")));
                     
                 }));
             

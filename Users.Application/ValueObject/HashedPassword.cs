@@ -1,13 +1,12 @@
-﻿using System;
-namespace Users.Domain.ValueObject
+﻿namespace Users.Domain.ValueObject
 {
     public class HashedPassword
     {
-        public string Value { get; private set; }
+        public string Value { get; }
 
-        public HashedPassword(string hashed_password)
+        public HashedPassword(string hashedPassword)
         {
-            Value = hashed_password;
+            Value = hashedPassword;
         }
     }
 }

@@ -1,13 +1,24 @@
 ﻿using System;
+using Users.Domain.Exception;
+
 namespace Users.Domain.ValueObject
 {
-    public class CountryCode
+    public class CountryCode : ValueObjectAbstract
     {
-        public string Value { get; private set; }
+        public string Value { get; }
 
-        public CountryCode(string country_code)
+        public CountryCode(string countryCode)
         {
-            Value = country_code;
+            Value = countryCode;
+            this.Validate();
+        }
+
+        private void Validate()
+        {
+            if (Value.Length != 2 || !HasOnlyLetters(Value))
+            {
+                throw InvalidCountryCodeException.Of(Value);
+            }
         }
     }
 }
