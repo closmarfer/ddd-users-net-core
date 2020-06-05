@@ -6,7 +6,7 @@ namespace Users.API.Application.Exception
         {
         }
 
-        public UserNotDeletedException(string? message) : base(message)
+        public UserNotDeletedException(string message) : base(message)
         {
         }
     }

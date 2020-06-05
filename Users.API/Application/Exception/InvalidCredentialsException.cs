@@ -6,7 +6,7 @@ namespace Users.API.Application.Exception
         {
         }
 
-        public InvalidCredentialsException(string? message) : base(message)
+        public InvalidCredentialsException(string message) : base(message)
         {
         }
     }

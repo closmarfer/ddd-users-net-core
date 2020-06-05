@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Users.API.Application.Commands.CreateUser;
+using Users.API.Application.Commands.DeleteUser;
+using Users.API.Application.Commands.UpdatePassword;
+using Users.API.Application.Commands.UpdateUser;
 using Users.API.Application.Queries.Login;
 using Users.Domain.Contract;
 using Users.Domain.Service;
@@ -32,16 +28,43 @@ namespace Users.API
         {
             services.AddControllers();
 
-            services.AddSingleton(typeof(Login));
-            services.AddSingleton(typeof(LoginQueryHandler));
-            services.AddSingleton(typeof(HashPassword));
-            services.AddSingleton(typeof(CreateUser));
-            
-            services.AddSingleton(typeof(CreateUserCommandHandler));
+            RegisterDomainServices(services);
 
+            RegisterQueryHandlers(services);
+
+            RegisterCommandHandlers(services);
+
+            RegisterRepositories(services);
+        }
+
+        private static void RegisterRepositories(IServiceCollection services)
+        {
             services.AddSingleton(typeof(MySqlProvider), typeof(MySqlProvider));
 
             services.AddSingleton(typeof(IUserRepository), typeof(UserRepository));
+        }
+
+        private static void RegisterDomainServices(IServiceCollection services)
+        {
+            services.AddSingleton(typeof(Login));
+            services.AddSingleton(typeof(HashPassword));
+            services.AddSingleton(typeof(CreateUser));
+            services.AddSingleton(typeof(DeleteUser));
+            services.AddSingleton(typeof(UpdatePassword));
+            services.AddSingleton(typeof(UpdateUser));
+        }
+
+        private static void RegisterQueryHandlers(IServiceCollection services)
+        {
+            services.AddSingleton(typeof(LoginQueryHandler));
+        }
+
+        private static void RegisterCommandHandlers(IServiceCollection services)
+        {
+            services.AddSingleton(typeof(CreateUserCommandHandler));
+            services.AddSingleton(typeof(DeleteUserCommandHandler));
+            services.AddSingleton(typeof(UpdatePasswordCommandHandler));
+            services.AddSingleton(typeof(UpdateUserCommandHandler));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
