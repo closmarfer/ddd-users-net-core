@@ -1,4 +1,3 @@
-using System;
 using Users.API.Application.Exception;
 using Users.Domain.Exception;
 using Users.Domain.ValueObject;
@@ -23,10 +22,6 @@ namespace Users.API.Application.Commands.DeleteUser
             catch (UserNotFoundException e)
             {
                 throw new UserNotDeletedException("User not found");
-            }
-            catch (System.Exception e)
-            {
-                throw new UserNotDeletedException(e.Message);
             }
         }
     }
