@@ -1,11 +1,11 @@
-using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Users.API.Application.Commands.DeleteUser;
 
 namespace Users.API.CommandBinder
 {
     public class DeleteUserCommandBinder
     {
-        [Required]
+        [BindRequired]
         public string UserUuid { get; set; }
 
         public DeleteUserCommand GetCommand()

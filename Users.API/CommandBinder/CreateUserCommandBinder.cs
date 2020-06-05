@@ -1,23 +1,23 @@
-using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Users.API.Application.Commands.CreateUser;
 
 namespace Users.API.CommandBinder
 {
     public class CreateUserCommandBinder
     {
-        [Required]
+        [BindRequired]
         public string Surname { get; set;}
-        [Required]
+        [BindRequired]
         public string Email { get; set;}
-        [Required]
+        [BindRequired]
         public string Password { get; set;}
-        [Required]
+        [BindRequired]
         public string Name { get; set;}
-        [Required]
+        [BindRequired]
         public int PhoneNumber { get; set;}
-        [Required]
+        [BindRequired]
         public int PostalCode { get; set;}
-        [Required]
+        [BindRequired]
         public string CountryCode { get; set;}
 
         public CreateUserCommand GetCommand()

@@ -1,18 +1,18 @@
-using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Users.API.Application.Commands.UpdateUser;
 
 namespace Users.API.CommandBinder
 {
     public class UpdateUserCommandBinder
     {
-        [Required] public string Surname { get; set; }
-        [Required] public string Email { get; set; }
-        [Required] public string Password { get; set; }
-        [Required] public string Name { get; set; }
-        [Required] public int PhoneNumber { get; set; }
-        [Required] public int PostalCode { get; set; }
-        [Required] public string CountryCode { get; set; }
-        [Required] public string UserUuid { get; set; }
+        [BindRequired] public string Surname { get; set; }
+        [BindRequired] public string Email { get; set; }
+        [BindRequired] public string Name { get; set; }
+        [BindRequired] public int PhoneNumber { get; set; }
+        [BindRequired] public int PostalCode { get; set; }
+        [BindRequired] public string CountryCode { get; set; }
+        [BindRequired] [FromRoute] public string UserUuid { get; set; }
 
         public UpdateUserCommand GetCommand()
         {
@@ -20,7 +20,6 @@ namespace Users.API.CommandBinder
                 UserUuid,
                 Surname,
                 Email,
-                Password,
                 Name,
                 PhoneNumber,
                 PostalCode,
