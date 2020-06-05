@@ -10,7 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Users.API.Application.Queries.Login;
 using Users.Domain.Contract;
+using Users.Domain.Service;
 using Users.Infrastructure.Repository.MySQL;
 
 namespace Users.API
@@ -28,6 +30,10 @@ namespace Users.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSingleton(
+                new LoginQueryHandler(new Login(new UserRepository(new MySqlProvider()), new HashPassword()))
+            );
 
             services.AddSingleton(typeof(MySqlProvider), typeof(MySqlProvider));
 
@@ -48,10 +54,7 @@ namespace Users.API
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

@@ -1,8 +1,8 @@
-namespace Users.API.Application.Commands.Login
+namespace Users.API.Application.Queries.Login
 {
-    public class LoginCommand
+    public class LoginQuery
     {
-        public LoginCommand(string email, string password)
+        public LoginQuery(string email, string password)
         {
             Email = email;
             Password = password;

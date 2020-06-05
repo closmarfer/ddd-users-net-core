@@ -3,24 +3,24 @@ using System.Security.Authentication;
 using Users.Domain.Exception;
 using Users.Domain.ValueObject;
 
-namespace Users.API.Application.Commands.Login
+namespace Users.API.Application.Queries.Login
 {
-    public class LoginCommandHandler
+    public class LoginQueryHandler
     {
         private readonly Domain.Service.Login _login;
 
-        public LoginCommandHandler(Domain.Service.Login login)
+        public LoginQueryHandler(Domain.Service.Login login)
         {
             _login = login;
         }
 
-        public void Handle(LoginCommand command)
+        public void Handle(LoginQuery query)
         {
             try
             {
                 _login.Handle(
-                    new Email(command.Email),
-                    new Password(command.Password)
+                    new Email(query.Email),
+                    new Password(query.Password)
                 );
             }
             catch (InvalidPasswordException e)
