@@ -1,10 +1,10 @@
-﻿using Dapper;
-using System;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
+using Dapper;
 using Users.Domain.Contract;
 using Users.Domain.Entity;
 using Users.Domain.ValueObject;
-using System.Diagnostics;
 
 namespace Users.Infrastructure.Repository.MySQL
 {
@@ -44,6 +44,11 @@ namespace Users.Infrastructure.Repository.MySQL
         }
 
         public void Update(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdatePassword(UserUuid userUuid, HashedPassword hashedPassword)
         {
             throw new NotImplementedException();
         }

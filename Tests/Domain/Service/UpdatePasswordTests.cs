@@ -92,8 +92,8 @@ namespace Tests.Domain.Service
             
             repositoryMock.Setup(m => m.GetByEmail(It.IsAny<Email>())).Returns(user);
 
-            repositoryMock.Setup(m => m.Update(It.IsAny<User>())).Callback(
-                ((User user) => { Assert.True(user.IsSamePassword(new HashedPassword("MyNewPasswordHashed--"))); }));
+            repositoryMock.Setup(m => m.UpdatePassword(It.IsAny<UserUuid>(), It.IsAny<HashedPassword>())).Callback(
+                (UserUuid userUuid, HashedPassword password) => { Assert.AreEqual("MyNewPasswordHashed--", password.Value); });
             return repositoryMock;
         }
     }

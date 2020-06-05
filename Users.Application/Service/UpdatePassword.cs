@@ -37,9 +37,7 @@ namespace Users.Domain.Service
             
             var newHashedPassword = _hashPassword.Handle(newPassword);
             
-            existentUser.HashedPassword = newHashedPassword;
-
-            _userRepository.Update(existentUser);
+            _userRepository.UpdatePassword(existentUser.UserUuid, newHashedPassword);
             
             //Fixme event
         }

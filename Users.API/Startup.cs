@@ -11,6 +11,7 @@ using Users.API.Application.Queries.Login;
 using Users.Domain.Contract;
 using Users.Domain.Service;
 using Users.Infrastructure.Repository.MySQL;
+using UserRepository = Users.Infrastructure.Repository.InMemory.UserRepository;
 
 namespace Users.API
 {
