@@ -2,6 +2,7 @@ using System.Net;
 using System.Security.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Users.API.Application.Queries.Login;
+using Users.API.QueryBinder;
 
 namespace Users.API.Controllers
 {
@@ -18,20 +19,12 @@ namespace Users.API.Controllers
         // GET: api/Login
         [HttpGet]
         [Route("api/login")]
-        public IActionResult Login([FromQuery] string email, [FromQuery] string password)
+        public IActionResult Login([FromQuery] LoginQueryBinder loginQueryBinder)
         {
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
-            {
-                return BadRequest("Email and password are required in querystring request");
-            }
-            
             try
             {
                 _loginQueryHandler.Handle(
-                    new LoginQuery(
-                        email,
-                        password
-                    )
+                    loginQueryBinder.GetQuery()
                 );
             }
             catch (InvalidCredentialException e)

@@ -32,10 +32,6 @@ namespace Users.API.Application.Commands.CreateUser
             {
                 throw new UserNotCreatedException("Email already registered");
             }
-            catch (System.Exception e)
-            {
-                throw new UserNotCreatedException(e.Message);
-            }
         }
     }
 }

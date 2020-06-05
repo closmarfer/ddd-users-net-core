@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Users.API.Application.Commands.CreateUser;
 using Users.API.Application.Queries.Login;
 using Users.Domain.Contract;
 using Users.Domain.Service;
@@ -31,9 +32,12 @@ namespace Users.API
         {
             services.AddControllers();
 
-            services.AddSingleton(
-                new LoginQueryHandler(new Login(new UserRepository(new MySqlProvider()), new HashPassword()))
-            );
+            services.AddSingleton(typeof(Login));
+            services.AddSingleton(typeof(LoginQueryHandler));
+            services.AddSingleton(typeof(HashPassword));
+            services.AddSingleton(typeof(CreateUser));
+            
+            services.AddSingleton(typeof(CreateUserCommandHandler));
 
             services.AddSingleton(typeof(MySqlProvider), typeof(MySqlProvider));
 
