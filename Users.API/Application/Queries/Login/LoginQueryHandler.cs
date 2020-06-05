@@ -1,5 +1,4 @@
-using System;
-using System.Security.Authentication;
+using Users.API.Application.Exception;
 using Users.Domain.Exception;
 using Users.Domain.ValueObject;
 
@@ -25,7 +24,7 @@ namespace Users.API.Application.Queries.Login
             }
             catch (InvalidPasswordException e)
             {
-                throw new InvalidCredentialException("Invalid credentials");
+                throw new InvalidCredentialsException("Invalid credentials");
             }
         }
     }

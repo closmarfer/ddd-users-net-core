@@ -1,6 +1,5 @@
-using System.Net;
-using System.Security.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Users.API.Application.Exception;
 using Users.API.Application.Queries.Login;
 using Users.API.QueryBinder;
 
@@ -27,7 +26,7 @@ namespace Users.API.Controllers
                     loginQueryBinder.GetQuery()
                 );
             }
-            catch (InvalidCredentialException e)
+            catch (InvalidCredentialsException e)
             {
                 return BadRequest();
             }
