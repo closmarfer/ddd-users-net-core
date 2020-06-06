@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
 using Dapper;
 using Users.Domain.Contract;
@@ -19,7 +18,22 @@ namespace Users.Infrastructure.Repository.MySQL
 
         public void Create(User newUser)
         {
-            throw new NotImplementedException();
+            var conn = _mySqlProvider.GetMySqlConnection();
+
+            conn.Query<dynamic>(
+                "insert into users.users (uuid, email, password, name, surname, phone_number, postal_code, country_code) VALUES (@Uuid, @Email, @Password, @Name, @Surname, @PhoneNumber, @PostalCode, @CountryCode);",
+                new
+                {
+                    Uuid = newUser.UserUuid.Value,
+                    Email = newUser.Email.Value,
+                    Password = newUser.HashedPassword.Value,
+                    Name = newUser.Name.Value,
+                    Surname = newUser.Surname.Value,
+                    PhoneNumber = newUser.PhoneNumber.Value,
+                    PostalCode = newUser.PostalCode.Value,
+                    CountryCode = newUser.CountryCode.Value,
+                });
+            
         }
 
         public User GetByEmail(Email email)
@@ -40,22 +54,52 @@ namespace Users.Infrastructure.Repository.MySQL
 
         public User GetUser(UserUuid uuid)
         {
-            throw new NotImplementedException();
+            var conn = _mySqlProvider.GetMySqlConnection();
+
+            var users = conn.Query<dynamic>("select * from users where `uuid` = @Uuid", new { Uuid = uuid.Value });
+            
+            if (!users.Any())
+            {
+                return null;
+            }
+
+            return mapUser(users.First());
         }
 
         public void Update(User user)
         {
-            throw new NotImplementedException();
+            var conn = _mySqlProvider.GetMySqlConnection();
+            
+            conn.Query<dynamic>(
+                "update users.users set email = @Email, name = @Name, surname = @Surname, phone_number = @PhoneNumber, postal_code = @PostalCode, country_code = @CountryCode where uuid = @Uuid;",
+                new
+                {
+                    Uuid = user.UserUuid.Value,
+                    Email = user.Email.Value,
+                    Name = user.Name.Value,
+                    Surname = user.Surname.Value,
+                    PhoneNumber = user.PhoneNumber.Value,
+                    PostalCode = user.PostalCode.Value,
+                    CountryCode = user.CountryCode.Value,
+                });
         }
 
         public void UpdatePassword(UserUuid userUuid, HashedPassword hashedPassword)
         {
-            throw new NotImplementedException();
+            var conn = _mySqlProvider.GetMySqlConnection();
+
+            conn.Query<dynamic>("update users set password = @Password where `uuid` = @Uuid",
+                new {Password = hashedPassword.Value, Uuid = userUuid.Value});
+
+
         }
 
         public void Delete(User user)
         {
-            throw new NotImplementedException();
+            var conn = _mySqlProvider.GetMySqlConnection();
+
+            conn.Query<dynamic>("delete from users where `uuid` = @Uuid",
+                new {Uuid = user.UserUuid.Value});
         }
 
         private User mapUser(dynamic user)

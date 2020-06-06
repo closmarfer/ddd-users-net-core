@@ -9,11 +9,13 @@ namespace Users.Domain.Service
     {
         private readonly IUserRepository _userRepository;
         private readonly HashPassword _hashPassword;
+        private readonly IEventDispatcher _eventDispatcher;
 
-        public CreateUser(IUserRepository userRepository, HashPassword hashPassword) : base(userRepository)
+        public CreateUser(IUserRepository userRepository, HashPassword hashPassword, IEventDispatcher eventDispatcher) : base(userRepository)
         {
             _userRepository = userRepository;
             _hashPassword = hashPassword;
+            _eventDispatcher = eventDispatcher;
         }
 
         public void Handle(

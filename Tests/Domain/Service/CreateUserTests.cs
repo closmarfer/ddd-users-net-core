@@ -1,6 +1,5 @@
-using System.Buffers.Text;
-using NUnit.Framework;
 using Moq;
+using NUnit.Framework;
 using Users.Domain.Contract;
 using Users.Domain.Entity;
 using Users.Domain.Service;
@@ -28,8 +27,8 @@ namespace Tests.Domain.Service
                     Assert.False(user.IsSamePassword(new HashedPassword("YWJjMTIz")));
                     
                 }));
-            
-            var createUser = new CreateUser(repositoryMock.Object, new HashPassword());
+            var eventDispatcherMock = new Mock<IEventDispatcher>();
+            var createUser = new CreateUser(repositoryMock.Object, new HashPassword(), eventDispatcherMock.Object);
 
             createUser.Handle(
                 new Email("test@test.com"),

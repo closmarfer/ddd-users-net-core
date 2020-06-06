@@ -10,8 +10,10 @@ using Users.API.Application.Commands.UpdateUser;
 using Users.API.Application.Queries.Login;
 using Users.Domain.Contract;
 using Users.Domain.Service;
+using Users.Infrastructure.EventDispatcher;
 using Users.Infrastructure.Repository.MySQL;
-using UserRepository = Users.Infrastructure.Repository.InMemory.UserRepository;
+
+//using UserRepository = Users.Infrastructure.Repository.InMemory.UserRepository;
 
 namespace Users.API
 {
@@ -41,6 +43,7 @@ namespace Users.API
         private static void RegisterRepositories(IServiceCollection services)
         {
             services.AddSingleton(typeof(MySqlProvider), typeof(MySqlProvider));
+            services.AddSingleton(typeof(IEventDispatcher), typeof(EventDispatcher));
 
             services.AddSingleton(typeof(IUserRepository), typeof(UserRepository));
         }

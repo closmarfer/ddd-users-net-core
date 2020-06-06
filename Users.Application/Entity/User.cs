@@ -1,13 +1,12 @@
-﻿using System;
-using Users.Domain.ValueObject;
+﻿using Users.Domain.ValueObject;
 
 namespace Users.Domain.Entity
 {
     public class User
     {
-        public UserUuid UserUuid { get; set; }
+        public UserUuid UserUuid { get; private set; }
         public Email Email { get; set; }
-        public HashedPassword HashedPassword { private get; set; }
+        public HashedPassword HashedPassword { get; set; }
         public Name Name { get; set; }
         public Surname Surname{ get; set; }
         public PhoneNumber PhoneNumber { get; set; }
@@ -15,11 +14,11 @@ namespace Users.Domain.Entity
         public CountryCode CountryCode{ get; set; }
 
 
-        private User(UserUuid userUuid, Email email, HashedPassword hashed_password)
+        private User(UserUuid userUuid, Email email, HashedPassword hashedPassword)
         {
             UserUuid = userUuid;
             Email = email;
-            HashedPassword = hashed_password;
+            HashedPassword = hashedPassword;
         }
 
         public static User create(
