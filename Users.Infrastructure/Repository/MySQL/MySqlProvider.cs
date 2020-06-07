@@ -12,7 +12,7 @@ namespace Users.Infrastructure.Repository.MySQL
     {
 
         public DbProviderFactory Factory => MySql.Data.MySqlClient.MySqlClientFactory.Instance;
-        public string GetConnectionString() => "Server=localhost;Port=8889;Database=users;Uid=root;Pwd=root;";
+        public string GetConnectionString() => "Server=db;Port=3306;Database=users;Uid=root;Pwd=root;";
 
         public DbConnection GetMySqlConnection(bool open = true,
             bool convertZeroDatetime = false, bool allowZeroDatetime = false)
