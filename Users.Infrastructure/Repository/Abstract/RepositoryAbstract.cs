@@ -1,3 +1,4 @@
+using System.Linq;
 using Users.Domain.Contract;
 using Users.Domain.Entity;
 
@@ -24,7 +25,7 @@ namespace Users.Infrastructure.Repository.Abstract
 
         private static void RemoveEvents(EntityAbstract entity)
         {
-            foreach (var domainEvent in entity.DomainEvents)
+            foreach (var domainEvent in entity.DomainEvents.ToList())
             {
                 entity.RemoveDomainEvent(domainEvent);
             }
