@@ -12,14 +12,14 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "usersddd",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Users.API": {
       "commandName": "Project",
-      "launchUrl": "weatherforecast",
+      "launchUrl": "usersddd",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -27,7 +27,7 @@
     },
     "Local": {
       "commandName": "Project",
-      "launchUrl": "weatherforecast",
+      "launchUrl": "usersddd",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
