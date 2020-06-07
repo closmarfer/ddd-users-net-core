@@ -1,4 +1,4 @@
-# DDD users made using C# and .NET Core
+# DDD users microservice made using C# and .NET Core
 
 ## Run:
 
@@ -8,7 +8,7 @@ docker-compose up -d
 
 ## Inspect endpoints:
 
-Import the Postman collection stored within the [postman folder](postman) to Postman app.
+Import the Postman collection stored within the [postman folder](postman) to the Postman app.
 
 # TODO
 
