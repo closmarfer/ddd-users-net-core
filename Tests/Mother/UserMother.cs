@@ -7,7 +7,7 @@ namespace Tests.Mother
     {
         public static User BasicUser()
         {
-            return User.create(
+            return User.Create(
                 new UserUuid("abc123"),
                 new Email("test@test.com"),
                 new HashedPassword("abc123"),

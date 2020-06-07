@@ -57,7 +57,7 @@ namespace Tests.Domain.Service
             var repositoryMock = new Mock<IUserRepository>();
 
             repositoryMock.Setup(m => m.GetByEmail(It.IsAny<Email>())).Returns(
-                User.create(
+                User.Create(
                     new UserUuid("abc123"),
                     new Email("test@test.com"),
                     new HashedPassword("MyOldPasswordHashed--"),
@@ -92,8 +92,12 @@ namespace Tests.Domain.Service
             
             repositoryMock.Setup(m => m.GetByEmail(It.IsAny<Email>())).Returns(user);
 
-            repositoryMock.Setup(m => m.UpdatePassword(It.IsAny<UserUuid>(), It.IsAny<HashedPassword>())).Callback(
-                (UserUuid userUuid, HashedPassword password) => { Assert.AreEqual("MyNewPasswordHashed--", password.Value); });
+            repositoryMock.Setup(m => m.UpdatePassword(It.IsAny<User>(), It.IsAny<HashedPassword>())).Callback(
+                (User existentUser, HashedPassword password) =>
+                {
+                    Assert.AreEqual("MyNewPasswordHashed--", password.Value);
+                    Assert.AreEqual(1, user.DomainEvents.Count);
+                });
             return repositoryMock;
         }
     }

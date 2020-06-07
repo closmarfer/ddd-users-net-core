@@ -4,14 +4,15 @@ using Dapper;
 using Users.Domain.Contract;
 using Users.Domain.Entity;
 using Users.Domain.ValueObject;
+using Users.Infrastructure.Repository.Abstract;
 
 namespace Users.Infrastructure.Repository.MySQL
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : RepositoryAbstract, IUserRepository
     {
         private readonly MySqlProvider _mySqlProvider;
 
-        public UserRepository(MySqlProvider mySqlProvider)
+        public UserRepository(MySqlProvider mySqlProvider, IEventDispatcher eventDispatcher) : base(eventDispatcher)
         {
             _mySqlProvider = mySqlProvider;
         }
@@ -33,14 +34,15 @@ namespace Users.Infrastructure.Repository.MySQL
                     PostalCode = newUser.PostalCode.Value,
                     CountryCode = newUser.CountryCode.Value,
                 });
-            
+
+            DispatchEvents(newUser);
         }
 
         public User GetByEmail(Email email)
         {
             var conn = _mySqlProvider.GetMySqlConnection();
 
-            var users = conn.Query<dynamic>("select * from users where email = @Email", new { Email = email.Value });
+            var users = conn.Query<dynamic>("select * from users where email = @Email", new {Email = email.Value});
 
             Debug.WriteLine(users.ToString());
 
@@ -56,8 +58,8 @@ namespace Users.Infrastructure.Repository.MySQL
         {
             var conn = _mySqlProvider.GetMySqlConnection();
 
-            var users = conn.Query<dynamic>("select * from users where `uuid` = @Uuid", new { Uuid = uuid.Value });
-            
+            var users = conn.Query<dynamic>("select * from users where `uuid` = @Uuid", new {Uuid = uuid.Value});
+
             if (!users.Any())
             {
                 return null;
@@ -69,7 +71,7 @@ namespace Users.Infrastructure.Repository.MySQL
         public void Update(User user)
         {
             var conn = _mySqlProvider.GetMySqlConnection();
-            
+
             conn.Query<dynamic>(
                 "update users.users set email = @Email, name = @Name, surname = @Surname, phone_number = @PhoneNumber, postal_code = @PostalCode, country_code = @CountryCode where uuid = @Uuid;",
                 new
@@ -82,16 +84,18 @@ namespace Users.Infrastructure.Repository.MySQL
                     PostalCode = user.PostalCode.Value,
                     CountryCode = user.CountryCode.Value,
                 });
+
+            DispatchEvents(user);
         }
 
-        public void UpdatePassword(UserUuid userUuid, HashedPassword hashedPassword)
+        public void UpdatePassword(User user, HashedPassword hashedPassword)
         {
             var conn = _mySqlProvider.GetMySqlConnection();
 
             conn.Query<dynamic>("update users set password = @Password where `uuid` = @Uuid",
-                new {Password = hashedPassword.Value, Uuid = userUuid.Value});
-
-
+                new {Password = hashedPassword.Value, Uuid = user.UserUuid.Value});
+            
+            DispatchEvents(user);
         }
 
         public void Delete(User user)
@@ -100,11 +104,13 @@ namespace Users.Infrastructure.Repository.MySQL
 
             conn.Query<dynamic>("delete from users where `uuid` = @Uuid",
                 new {Uuid = user.UserUuid.Value});
+            
+            DispatchEvents(user);
         }
 
         private User mapUser(dynamic user)
         {
-            return User.create(
+            return User.Create(
                 new UserUuid(user.uuid),
                 new Email(user.email),
                 new HashedPassword(user.password),

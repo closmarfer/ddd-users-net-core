@@ -1,4 +1,5 @@
 using Users.Domain.Contract;
+using Users.Domain.Event;
 using Users.Domain.Exception;
 using Users.Domain.ValueObject;
 
@@ -37,9 +38,9 @@ namespace Users.Domain.Service
             
             var newHashedPassword = _hashPassword.Handle(newPassword);
             
-            _userRepository.UpdatePassword(existentUser.UserUuid, newHashedPassword);
+            existentUser.AddDomainEvent(new PasswordWasUpdatedEvent(existentUser.UserUuid.Value));
             
-            //Fixme event
+            _userRepository.UpdatePassword(existentUser, newHashedPassword);
         }
     }
 }

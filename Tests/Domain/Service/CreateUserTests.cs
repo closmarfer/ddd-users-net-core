@@ -15,7 +15,7 @@ namespace Tests.Domain.Service
             var repositoryMock = new Mock<IUserRepository>();
 
             repositoryMock.Setup(m => m.Create(It.IsAny<User>())).Callback(
-                ((User user) =>
+                (User user) =>
                 {
                     Assert.IsNotEmpty(user.UserUuid.Value);
                     Assert.AreEqual("test@test.com", user.Email.Value);
@@ -26,9 +26,11 @@ namespace Tests.Domain.Service
                     Assert.AreEqual("es", user.CountryCode.Value);
                     Assert.False(user.IsSamePassword(new HashedPassword("YWJjMTIz")));
                     
-                }));
-            var eventDispatcherMock = new Mock<IEventDispatcher>();
-            var createUser = new CreateUser(repositoryMock.Object, new HashPassword(), eventDispatcherMock.Object);
+                    Assert.AreEqual(1, user.DomainEvents.Count);
+                    
+                });
+            
+            var createUser = new CreateUser(repositoryMock.Object, new HashPassword());
 
             createUser.Handle(
                 new Email("test@test.com"),

@@ -75,6 +75,8 @@ namespace Tests.Domain.Service
                     Assert.AreEqual(12346, user.PostalCode.Value);
                     Assert.AreEqual("fr", user.CountryCode.Value);
                     Assert.False(user.IsSamePassword(new HashedPassword("testpass")));
+                    
+                    Assert.AreEqual(2, user.DomainEvents.Count);
                 }));
             return repositoryMock;
         }

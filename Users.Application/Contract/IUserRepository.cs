@@ -9,7 +9,7 @@ namespace Users.Domain.Contract
         User GetByEmail(Email email);
         User GetUser(UserUuid uuid);
         void Update(User user);
-        void UpdatePassword(UserUuid userUuid, HashedPassword hashedPassword);
+        void UpdatePassword(User user, HashedPassword newPassword);
         void Delete(User user);
     }
 }

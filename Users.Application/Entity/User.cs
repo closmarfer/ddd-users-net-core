@@ -2,9 +2,9 @@
 
 namespace Users.Domain.Entity
 {
-    public class User
+    public class User: EntityAbstract
     {
-        public UserUuid UserUuid { get; private set; }
+        public UserUuid UserUuid { get; }
         public Email Email { get; set; }
         public HashedPassword HashedPassword { get; set; }
         public Name Name { get; set; }
@@ -21,7 +21,7 @@ namespace Users.Domain.Entity
             HashedPassword = hashedPassword;
         }
 
-        public static User create(
+        public static User Create(
             UserUuid uuid,
             Email email,
             HashedPassword hashedPassword,

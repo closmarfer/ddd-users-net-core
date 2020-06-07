@@ -1,4 +1,5 @@
 using Users.Domain.Contract;
+using Users.Domain.Event;
 using Users.Domain.Exception;
 using Users.Domain.ValueObject;
 
@@ -21,7 +22,9 @@ namespace Users.Domain.Service
             {
                 throw new UserNotFoundException();
             }
-
+            
+            existentUser.AddDomainEvent(new UserWasDeletedEvent(existentUser.UserUuid.Value));
+            
             _userRepository.Delete(existentUser);
 
             //Fixme event

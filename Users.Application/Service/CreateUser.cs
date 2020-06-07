@@ -1,6 +1,7 @@
 ﻿using System;
 using Users.Domain.Contract;
 using Users.Domain.Entity;
+using Users.Domain.Event;
 using Users.Domain.ValueObject;
 
 namespace Users.Domain.Service
@@ -9,13 +10,11 @@ namespace Users.Domain.Service
     {
         private readonly IUserRepository _userRepository;
         private readonly HashPassword _hashPassword;
-        private readonly IEventDispatcher _eventDispatcher;
 
-        public CreateUser(IUserRepository userRepository, HashPassword hashPassword, IEventDispatcher eventDispatcher) : base(userRepository)
+        public CreateUser(IUserRepository userRepository, HashPassword hashPassword) : base(userRepository)
         {
             _userRepository = userRepository;
             _hashPassword = hashPassword;
-            _eventDispatcher = eventDispatcher;
         }
 
         public void Handle(
@@ -30,8 +29,8 @@ namespace Users.Domain.Service
         {
             
             CheckEmail(email);
-            
-            var newUser = User.create(
+            var userUuid = generateUserUuid();
+            var newUser = User.Create(
                 generateUserUuid(),
                 email,
                 _hashPassword.Handle(password),
@@ -41,10 +40,10 @@ namespace Users.Domain.Service
                 postalCode,
                 countryCode
                 );
-
-            _userRepository.Create(newUser);
             
-            //Fixme event
+            newUser.AddDomainEvent(new UserWasCreatedEvent(userUuid.Value));
+            
+            _userRepository.Create(newUser);
         }
 
         private UserUuid generateUserUuid()
