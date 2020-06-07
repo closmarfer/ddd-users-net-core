@@ -17,6 +17,15 @@ namespace Users.Infrastructure.Repository.Abstract
             foreach (var domainEvent in entity.DomainEvents)
             {
                 _eventDispatcher.Dispatch(domainEvent);
+            }
+
+            RemoveEvents(entity);
+        }
+
+        private static void RemoveEvents(EntityAbstract entity)
+        {
+            foreach (var domainEvent in entity.DomainEvents)
+            {
                 entity.RemoveDomainEvent(domainEvent);
             }
         }
