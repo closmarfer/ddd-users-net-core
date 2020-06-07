@@ -6,6 +6,12 @@
 docker-compose up -d
 ```
 
+## Execute tests:
+
+```
+docker-compose exec web dotnet test
+```
+
 ## Inspect endpoints:
 
 Import the Postman collection stored within the [postman folder](postman) to the Postman app.
