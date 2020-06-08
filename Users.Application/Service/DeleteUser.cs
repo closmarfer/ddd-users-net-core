@@ -27,7 +27,6 @@ namespace Users.Domain.Service
             
             _userRepository.Delete(existentUser);
 
-            //Fixme event
         }
     }
 }
