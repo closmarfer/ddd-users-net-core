@@ -168,7 +168,7 @@
 					"variable": [
 						{
 							"key": "userUuid",
-							"value": "b72ed472-ffca-4a93-9a0e-c003535eede6"
+							"value": "08cfd822-66b4-4d10-a169-e9acea576ded"
 						}
 					]
 				}
@@ -185,17 +185,17 @@
 					"formdata": [
 						{
 							"key": "email",
-							"value": "foo@bar.co",
+							"value": "test-updated@test.com",
 							"type": "text"
 						},
 						{
 							"key": "name",
-							"value": "Foo",
+							"value": "User updated",
 							"type": "text"
 						},
 						{
 							"key": "surname",
-							"value": "Bar",
+							"value": "For Requests testing updated",
 							"type": "text"
 						},
 						{
@@ -230,7 +230,7 @@
 					"variable": [
 						{
 							"key": "userUuid",
-							"value": "b72ed472-ffca-4a93-9a0e-c003535eede6"
+							"value": "08cfd822-66b4-4d10-a169-e9acea576ded"
 						}
 					]
 				}
@@ -238,7 +238,7 @@
 			"response": []
 		},
 		{
-			"name": "Create User 2",
+			"name": "Create Another user 2",
 			"request": {
 				"method": "POST",
 				"header": [],

@@ -14,3 +14,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 CREATE USER 'root'@'%' IDENTIFIED BY 'root';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
+
+# Inserting example user in order to test requests in Postman
+INSERT INTO users (uuid, email, password, name, surname, phone_number, postal_code, country_code) 
+VALUES ("08cfd822-66b4-4d10-a169-e9acea576ded", "test@test.com", "A8X0HynmsCNWHOCgKss9qGVEAY65T/sKhLcBWzWx5kw=", "User", "For Requests testing", 987456321, 13456, "es");
