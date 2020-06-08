@@ -108,7 +108,7 @@
 			"response": []
 		},
 		{
-			"name": "Update Password for example user",
+			"name": "Update Password for created user",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -149,7 +149,7 @@
 			"response": []
 		},
 		{
-			"name": "Update User for example user",
+			"name": "Update User example user",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -211,7 +211,7 @@
 			"response": []
 		},
 		{
-			"name": "Delete user example user",
+			"name": "Delete User example user",
 			"request": {
 				"method": "DELETE",
 				"header": [],
