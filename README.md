@@ -12,6 +12,12 @@ docker-compose up -d
 docker-compose exec web dotnet test
 ```
 
+## Access to DB:
+
+```
+docker-compose exec db mysql -uroot -proot
+```
+
 ## Inspect endpoints:
 
 Import the Postman collection stored within the [postman folder](postman) to the Postman app.
