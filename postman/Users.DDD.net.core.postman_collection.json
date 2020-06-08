@@ -1,47 +1,10 @@
 {
 	"info": {
-		"_postman_id": "09e4b739-cf5f-42bf-9817-ba8c38a07a73",
+		"_postman_id": "93ac9fb0-63e3-4a3e-9c59-87ef120f8713",
 		"name": "Users.DDD.net.core",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "Login",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept-Encoding",
-						"value": "application/json",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"url": {
-					"raw": "http://localhost:5000/api/login?email=foo@bar.com&password=abc123",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"login"
-					],
-					"query": [
-						{
-							"key": "email",
-							"value": "foo@bar.com"
-						},
-						{
-							"key": "password",
-							"value": "abc123"
-						}
-					]
-				}
-			},
-			"response": []
-		},
 		{
 			"name": "Create User",
 			"request": {
@@ -108,7 +71,44 @@
 			"response": []
 		},
 		{
-			"name": "Update Password",
+			"name": "Login using created user",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Encoding",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/api/login?email=foo@bar.com&password=abc123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "foo@bar.com"
+						},
+						{
+							"key": "password",
+							"value": "abc123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Password for example user",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -149,34 +149,7 @@
 			"response": []
 		},
 		{
-			"name": "Delete user",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000/api/user/:userUuid",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"user",
-						":userUuid"
-					],
-					"variable": [
-						{
-							"key": "userUuid",
-							"value": "08cfd822-66b4-4d10-a169-e9acea576ded"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update User",
+			"name": "Update User for example user",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -238,57 +211,12 @@
 			"response": []
 		},
 		{
-			"name": "Create Another user 2",
+			"name": "Delete user example user",
 			"request": {
-				"method": "POST",
+				"method": "DELETE",
 				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "Foo2",
-							"type": "text"
-						},
-						{
-							"key": "surname",
-							"value": "Bar2",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "foo2@bar.com",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "abc123-2",
-							"type": "text"
-						},
-						{
-							"key": "countryCode",
-							"value": "es",
-							"type": "text"
-						},
-						{
-							"key": "postalCode",
-							"value": "12344",
-							"type": "text"
-						},
-						{
-							"key": "PhoneNumber",
-							"value": "987654320",
-							"type": "text"
-						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:5000/api/user",
+					"raw": "http://localhost:5000/api/user/:userUuid",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -296,7 +224,14 @@
 					"port": "5000",
 					"path": [
 						"api",
-						"user"
+						"user",
+						":userUuid"
+					],
+					"variable": [
+						{
+							"key": "userUuid",
+							"value": "08cfd822-66b4-4d10-a169-e9acea576ded"
+						}
 					]
 				}
 			},
@@ -307,7 +242,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "04751c9f-d0e7-4882-bf9a-3f7b43ffc445",
+				"id": "badab35d-ca20-44f7-8810-c66fe956e433",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -317,7 +252,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "dafd83ad-282e-4eb5-994d-266b1708f10a",
+				"id": "c1628a74-9a22-4d6c-bb81-49ad762a7c27",
 				"type": "text/javascript",
 				"exec": [
 					""
